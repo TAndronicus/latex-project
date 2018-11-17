@@ -5,9 +5,26 @@
 \usepackage{amsthm}
 \usepackage{thmtools}
 \usepackage{amsmath}
+\usepackage{scrlayer-scrpage}
+\usepackage{scrextend}
+\usepackage{titleref}
+
+\pagestyle{scrheadings}
+\addtokomafont{pagehead}{\normalfont}
+\chead{IV. Rachunek całkowy jednej zmiennej}
+\rehead{}
+\lohead{}
+\makeatletter
+\cohead{\thesection. \TR@currentTitle}
+\makeatother
 
 \declaretheoremstyle[headindent=15pt, headfont=\scshape\bfseries]{theoremstyle}
 \declaretheorem[name=Twierdzenie, numbered=no, style=theoremstyle]{twierdzenie}
+
+\deffootnotemark{(\textsuperscript{\thefootnotemark})}
+\deffootnote[4em]{0em}{0em}{(\textsuperscript{\thefootnotemark})}
+
+\newcommand{\extendedSection}[2]{\section[#1]{#1\normalfont{\protect\footnote{#2}}\textbf{.}}}
 
 \setcounter{chapter}{11}
 \setcounter{section}{6}
@@ -21,7 +38,8 @@
 
     Dodajmy, że istnieją szeregi (o wyrazach dodatnich), które na żadne kryterium logarytmiczne nie reagują.
 
-    \section{Szeregi Fouriera.}
+    \extendedSection{Szeregi Fouriera}{J. Fourier (1768-1830). Rozwinięcia funkcji w szeregi znane pod jego imieniem wprowadził Fourier w związku z
+    pracami w teorii ciepła.}
 
     Niech dany będzie szereg trygonometryczny zbieżny następującej postaci:
 

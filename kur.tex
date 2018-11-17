@@ -1,114 +1,136 @@
-\documentclass{book}
+\documentclass[leqno]{book}
 \usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsthm}
 \usepackage{thmtools}
+\usepackage{amsmath}
 
 \declaretheoremstyle[headindent=15pt, headfont=\scshape\bfseries]{theoremstyle}
 \declaretheorem[name=Twierdzenie, numbered=no, style=theoremstyle]{twierdzenie}
 
 \setcounter{chapter}{11}
 \setcounter{section}{6}
+\setcounter{page}{226}
+\setcounter{equation}{28}
+\counterwithout{equation}{section}
+
 
 \begin{document}
-Można jednak wówczas stosować mocniejsze kryteria logarytmiczne, do których prowadzą szeregi rozpatrywane w przykładzie 3.
+    Można jednak wówczas stosować mocniejsze kryteria logarytmiczne, do których prowadzą szeregi rozpatrywane w przykładzie 3.
 
-Dodajmy, że istnieją szeregi (o wyrazach dodatnich), które na żadne kryterium logarytmiczne nie reagują.
+    Dodajmy, że istnieją szeregi (o wyrazach dodatnich), które na żadne kryterium logarytmiczne nie reagują.
 
-\section{Szeregi Fouriera.}
+    \section{Szeregi Fouriera.}
 
-Niech dany będzie szereg trygonometryczny zbieżny następującej postaci:
+    Niech dany będzie szereg trygonometryczny zbieżny następującej postaci:
 
-\[
-f(x) = \frac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + (a_2 \cos 2x + b_2 \sin 2x) + \ldots + (a_n \cos nx + b_n \sin nx) + \ldots
-\]
+    \begin{multline}
+        \label{eq:fourier}
+        f(x) = \frac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + (a_2 \cos 2x + b_2 \sin 2x) + \\
+        \ldots + (a_n \cos nx + b_n \sin nx) + \ldots
+    \end{multline}
 
-Zauważmy, że jeśli szereg rozważany jest jednostajnie zbieżny w przedziale $-\pi \leq x \leq \pi$, to współczynniki $a_n$ i $b_n$ dają się łatwo wyrazić w zależności od sumy szeregu, tj. od funkcji $f$. Mianowicie, ze względu na jednostajną zbieżność mamy (por. tw. 12, PARAGRAPH)
+    Zauważmy, że jeśli szereg rozważany jest jednostajnie zbieżny w przedziale $-\pi \leq x \leq \pi$,
+    to współczynniki $a_n$ i $b_n$ dają się łatwo wyrazić w zależności od sumy szeregu, tj. od funkcji $f$.
+    Mianowicie, ze względu na jednostajną zbieżność mamy (por. tw. 12, \S 10.2)
 
-\[
-\int\limits_{-\pi}^{\pi} f(x)\,dx = \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \,dx + \sum_{n = 1}^{\infty} \int\limits_{-\pi}^{\pi} (a_n \cos nx + b_n \sin nx) \,dx
-\]
+    \[
+        \int\limits_{-\pi}^{\pi} f(x)\,dx = \\ \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \,dx +
+        \sum_{n = 1}^{\infty} \int\limits_{-\pi}^{\pi} (a_n \cos nx + b_n \sin nx) \,dx
+    \]
 
-Ponieważ zaś
+    Ponieważ zaś
 
-\[
-\int\limits_{-\pi}^{\pi} \cos nx \,dx = 0 = \int\limits_{-\pi}^{\pi} \sin nx \,dx, 
-\int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \,dx = \pi a_0
-\]
+    \[
+        \int\limits_{-\pi}^{\pi} \cos nx \,dx = 0 = \int\limits_{-\pi}^{\pi} \sin nx \,dx,
+        \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \,dx = \pi a_0
+    \]
 
-więc
+    więc
 
-\[
-a_0 = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \,dx
-\]
+    \begin{equation}
+        \label{eq:el0}
+        a_0 = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \,dx
+    \end{equation}
 
-Aby obliczyć $a_0$, mnożymy obie strony równości (REF) przez $\cos nx$ i podobnie jak poprzednio znajdujemy
+    Aby obliczyć $a_0$, mnożymy obie strony równości~\eqref{eq:fourier} przez $\cos nx$ i podobnie jak poprzednio znajdujemy
 
-\[
-\int\limits_{-\pi}^{\pi} f(x) \cos nx \,dx = \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \cos nx \,dx + \sum_{m = 1}^{\infty} \int\limits_{-\pi}^{\pi} (a_m \cos mx \cos nx + b_m \sin mx \cos nx) \,dx
-\]
+    \begin{multline*}
+        \int\limits_{-\pi}^{\pi} f(x) \cos nx \,dx = \\ \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \cos nx \,dx +
+        \sum_{m = 1}^{\infty} \int\limits_{-\pi}^{\pi} (a_m \cos mx \cos nx + b_m \sin mx \cos nx) \,dx
+    \end{multline*}
 
-Ponieważ zaś (por. przykład PARAGR)
+    Ponieważ zaś (por. przykład 4, \S 10.1)
 
-\[
-\int\limits_{-\pi}^{\pi} \cos^2 nx \,dx = \pi, 
-\int\limits_{-\pi}^{\pi} \cos mx \cos nx \,dx = 0 = \int\limits_{-\pi}^{\pi} \sin mx \sin nx \,dx
-\]
+    \[
+        \int\limits_{-\pi}^{\pi} \cos^2 nx \,dx = \pi, \qquad
+        \int\limits_{-\pi}^{\pi} \cos mx \cos nx \,dx = 0 = \int\limits_{-\pi}^{\pi} \sin mx \sin nx \,dx
+    \]
 
-dla $m \neq n$, przeto
+    dla $m \neq n$, przeto
 
-\[
-a_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \cos nx \,dx
-\]
+    \begin{equation}
+        \label{eq:ela}
+        a_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \cos nx \,dx
+    \end{equation}
 
-Podobnie znajdujemy
+    Podobnie znajdujemy
 
-\[
-b_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \sin nx \,dx
-\]
+    \begin{equation}
+        \label{eq:elb}
+        b_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \sin nx \,dx
+    \end{equation}
 
-Powstaje następujące zagadnienie: jakie funkcje dadzą się przedstawić w postaci (ROWN), przy czym współczynniki $a_n$ i $b_n$ mają spełniać wzory ROWN (tzw. \textit{wzory Eulera-Fouriera}). Jeśli tego rodzaju rowinięcie istnieje, to nazywamy je \textit{szeregiem Fouriera funkcji}.
+    Powstaje następujące zagadnienie: jakie funkcje dadzą się przedstawić w postaci~\eqref{eq:fourier}, przy czym współczynniki $a_n$ i $b_n$ mają
+    spełniać wzory~\eqref{eq:el0}-\eqref{eq:elb} (tzw. \textit{wzory Eulera-Fouriera}). Jeśli tego rodzaju rowinięcie istnieje, to nazywamy je \textit{szeregiem Fouriera funkcji}.
 
-Jest rzeczą oczywistą, że ze względu na okresowość funkcji cosinus i sinus założyć należy okresowość funkcji $f$. Założymy ponadto, że funkcja $f$ jest przedziałami monotoniczna (por PAR).
+    Jest rzeczą oczywistą, że ze względu na okresowość funkcji cosinus i sinus założyć należy okresowość funkcji $f$.
+    Założymy ponadto, że funkcja $f$ jest przedziałami monotoniczna (por \S 4.2).
 
-Udowodnimy mianowicie następujące:
+    Udowodnimy mianowicie następujące:
 
-\begin{twierdzenie}
-Każda funkcja okresowa $f$ o okresie $2\pi$ (tzn. $f(x + 2\pi) = f(x)$), przedziałami ciągła (wraz ze swą pochodną), przedziałami monotoniczna i spełniająca (w punktach nieciągłości) warunek
-\[
-f(x) = \frac{f(x - 0) + f(x + 0)}{2}
-\]
-daje się rozwinąć w szereg Fouriera.
-\end{twierdzenie}
+    \begin{twierdzenie}
+        Każda funkcja okresowa $f$ o okresie $2\pi$ (tzn. $f(x + 2\pi) = f(x)$), przedziałami ciągła (wraz ze swą pochodną),
+        przedziałami monotoniczna i spełniająca (w punktach nieciągłości) warunek
+        \begin{equation}
+            \label{eq:statement}
+            f(x) = \frac{f(x - 0) + f(x + 0)}{2}
+        \end{equation}
+        daje się rozwinąć w szereg Fouriera.
+    \end{twierdzenie}
 
-Oznaczmy przez $S_n (x)$ $n$-tą sumę częściową szeregu ROWN, tj.
+    Oznaczmy przez $S_n (x)$ $n$-tą sumę częściową szeregu~\eqref{eq:fourier}, tj.
 
-\[
-S_n(x) = \frac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + \ldots + (a_n \cos nx + b_n \sin nx)
-\]
+    \begin{equation}
+        \label{eq:sum}
+        S_n(x) = \frac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + \ldots + (a_n \cos nx + b_n \sin nx)
+    \end{equation}
 
-Należy dowieść, że jeśli współczynniki spełniają warunki (ROWN), to 
+    Należy dowieść, że jeśli współczynniki spełniają warunki~\eqref{eq:el0}-\eqref{eq:elb}, to
 
-\[
-f(x) = \lim_{n = \infty} S_n(x)
-\]
+    \begin{equation}
+        \label{eq:fS}
+        f(x) = \lim_{n = \infty} S_n(x)
+    \end{equation}
 
-Wymienione warunki pozwalają przekształcić wzór ROWN, jak następuje
+    Wymienione warunki pozwalają przekształcić wzór~\eqref{eq:sum}, jak następuje
 
-\[
-\pi S_n(x) = \inf\limits_{-\pi}^{\pi} \frac{1}{2} f(t) \,dt + 
-\int\limits_{-\pi}^{\pi} f(t)(\cos t \cos x + \sin t \sin x) \,dt + 
-\ldots + 
-\int\limits_{-\pi}^{\pi} f(t)(\cos nt \cos nx + \sin nt \sin nx) \,dt =
-\int\limits_{-\pi}^{\pi} f(t)\left(\frac{1}{2} + \cos (t -x) + \ldots + \cos n(t - x)\right) \,dt =
-\int\limits_{-\pi}^{\pi} f(t) \frac{\sin (2n + 1) \frac{1}{2} (t - x)}{2 \sin \frac{1}{2} (t - x)} \,dt
-\]
+    \begin{gather}
+        \begin{align}
+            \pi S_n(x) & = \int\limits_{-\pi}^{\pi} \frac{1}{2} f(t) \,dt + \int\limits_{-\pi}^{\pi} f(t)(\cos t \cos x + \sin t \sin x) \,dt +
+            \ldots + \\
+            & \kern 6pc + \int\limits_{-\pi}^{\pi} f(t)(\cos nt \cos nx + \sin nt \sin nx) \,dt = \notag\\
+            & = \int\limits_{-\pi}^{\pi} f(t)\left(\frac{1}{2} + \cos (t -x) + \ldots + \cos n(t - x)\right) \,dt = \notag\\
+            & = \int\limits_{-\pi}^{\pi} f(t) \frac{\sin (2n + 1) \frac{1}{2} (t - x)}{2 \sin \frac{1}{2} (t - x)} \,dt \notag
+        \end{align}
+        \raisetag{3\baselineskip}
+    \end{gather}
 
-na mocy znanego wzoru (PAR):
+    na mocy znanego wzoru (por. (2), \S 1.2):
 
-\[
-\frac{1}{2} + \cos t + \cos 2t + \ldots + \cos nt = \frac{\sin \frac{1}{2} (2n + 1) t}{2 \sin \frac{1}{2} t}
-\]
+    \[
+        \frac{1}{2} + \cos t + \cos 2t + \ldots + \cos nt = \frac{\sin \frac{1}{2} (2n + 1) t}{2 \sin \frac{1}{2} t}
+    \]
 
 \end{document}

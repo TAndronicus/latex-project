@@ -8,30 +8,51 @@
 \usepackage{scrlayer-scrpage}
 \usepackage{scrextend}
 \usepackage{titleref}
+\usepackage{titlesec}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{relsize}
+
+\addtolength{\voffset}{-0.75cm}
+\addtolength{\textheight}{1.5cm}
 
 \pagestyle{scrheadings}
 \addtokomafont{pagehead}{\normalfont}
 \chead{IV. Rachunek całkowy jednej zmiennej}
 \rehead{}
 \lohead{}
-\makeatletter
-\cohead{\thesection. \TR@currentTitle}
-\makeatother
+\cohead{\thesection.~\nameref{currentSection}}
 
-\declaretheoremstyle[headindent=15pt, headfont=\scshape\bfseries]{theoremstyle}
+\expandafter\def\expandafter\normalsize\expandafter{%
+\normalsize
+\setlength\abovedisplayskip{5pt}
+\setlength\belowdisplayskip{5pt}
+\setlength\abovedisplayshortskip{5pt}
+\setlength\belowdisplayshortskip{5pt}
+}
+
+\declaretheoremstyle[headindent=15pt, headfont=\scshape, bodyfont=\slshape]{theoremstyle}
 \declaretheorem[name=Twierdzenie, numbered=no, style=theoremstyle]{twierdzenie}
 
 \deffootnotemark{(\textsuperscript{\thefootnotemark})}
 \deffootnote[4em]{0em}{0em}{(\textsuperscript{\thefootnotemark})}
+\renewcommand{\footnoterule}{%
+\kern -3pt
+\hrule width 5em height 0.5pt
+\kern 2ex
+}
 
-\newcommand{\extendedSection}[2]{\section[#1]{#1\normalfont{\protect\footnote{#2}}\textbf{.}}}
+\titleformat{\section}[runin]{\normalfont\bfseries}{\kern2em\thesection.}{0.5em}{}[\kern-0.5em]
+\newcommand{\extendedSection}[2]{\section[#1]{#1\normalfont{\protect\footnote{#2}}\textbf{.}}\label{currentSection}}
+
+\newcommand{\normalsign}[1]{{\normalfont{#1}}}
+\newcommand{\parsign}[0]{\S\,}
 
 \setcounter{chapter}{11}
 \setcounter{section}{6}
 \setcounter{page}{226}
 \setcounter{equation}{28}
 \counterwithout{equation}{section}
-
 
 \begin{document}
     Można jednak wówczas stosować mocniejsze kryteria logarytmiczne, do których prowadzą szeregi rozpatrywane w przykładzie 3.
@@ -45,59 +66,59 @@
 
     \begin{multline}
         \label{eq:fourier}
-        f(x) = \frac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + (a_2 \cos 2x + b_2 \sin 2x) + \\
+        f(x) = \tfrac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + (a_2 \cos 2x + b_2 \sin 2x) + \\
         \ldots + (a_n \cos nx + b_n \sin nx) + \ldots
     \end{multline}
 
     Zauważmy, że jeśli szereg rozważany jest jednostajnie zbieżny w przedziale $-\pi \leq x \leq \pi$,
     to współczynniki $a_n$ i $b_n$ dają się łatwo wyrazić w zależności od sumy szeregu, tj. od funkcji $f$.
-    Mianowicie, ze względu na jednostajną zbieżność mamy (por. tw. 12, \S 10.2)
+    Mianowicie, ze względu na jednostajną zbieżność mamy (por. tw. 12, \parsign10.2)
 
     \[
-        \int\limits_{-\pi}^{\pi} f(x)\,dx = \\ \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \,dx +
-        \sum_{n = 1}^{\infty} \int\limits_{-\pi}^{\pi} (a_n \cos nx + b_n \sin nx) \,dx
+        \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x)\,dx = \\ \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \,dx +
+        \sum_{n = 1}^{\infty} \mathsmaller{\int\limits_{-\pi}^{\pi}} (a_n \cos nx + b_n \sin nx) \,dx \text{.}
     \]
 
     Ponieważ zaś
 
     \[
-        \int\limits_{-\pi}^{\pi} \cos nx \,dx = 0 = \int\limits_{-\pi}^{\pi} \sin nx \,dx,
-        \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \,dx = \pi a_0
+        \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos nx \,dx = 0 = \mathsmaller{\int\limits_{-\pi}^{\pi}} \sin nx \,dx, \qquad
+        \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \,dx = \pi a_0 \text{,}
     \]
 
     więc
 
     \begin{equation}
         \label{eq:el0}
-        a_0 = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \,dx
+        a_0 = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \,dx \text{.}
     \end{equation}
 
     Aby obliczyć $a_0$, mnożymy obie strony równości~\eqref{eq:fourier} przez $\cos nx$ i podobnie jak poprzednio znajdujemy
 
     \begin{multline*}
-        \int\limits_{-\pi}^{\pi} f(x) \cos nx \,dx = \\ \int\limits_{-\pi}^{\pi} \frac{1}{2} a_0 \cos nx \,dx +
-        \sum_{m = 1}^{\infty} \int\limits_{-\pi}^{\pi} (a_m \cos mx \cos nx + b_m \sin mx \cos nx) \,dx
+        \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \cos nx \,dx = \\ \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \cos nx \,dx +
+        \sum_{m = 1}^{\infty} \mathsmaller{\int\limits_{-\pi}^{\pi}} (a_m \cos mx \cos nx + b_m \sin mx \cos nx) \,dx \text{.}
     \end{multline*}
 
-    Ponieważ zaś (por. przykład 4, \S 10.1)
+    Ponieważ zaś (por. przykład 4, \parsign 10.1)
 
     \[
-        \int\limits_{-\pi}^{\pi} \cos^2 nx \,dx = \pi, \qquad
-        \int\limits_{-\pi}^{\pi} \cos mx \cos nx \,dx = 0 = \int\limits_{-\pi}^{\pi} \sin mx \sin nx \,dx
+        \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos^2 nx \,dx = \pi, \qquad
+        \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos mx \cos nx \,dx = 0 = \mathsmaller{\int\limits_{-\pi}^{\pi}} \sin mx \sin nx \,dx
     \]
 
     dla $m \neq n$, przeto
 
     \begin{equation}
         \label{eq:ela}
-        a_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \cos nx \,dx
+        a_n = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \cos nx \,dx \text{.}
     \end{equation}
 
     Podobnie znajdujemy
 
     \begin{equation}
         \label{eq:elb}
-        b_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \sin nx \,dx
+        b_n = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \sin nx \,dx \text{.}
     \end{equation}
 
     Powstaje następujące zagadnienie: jakie funkcje dadzą się przedstawić w postaci~\eqref{eq:fourier}, przy czym współczynniki $a_n$ i $b_n$ mają
@@ -105,13 +126,14 @@
     Jeśli tego rodzaju rowinięcie istnieje, to nazywamy je \textit{szeregiem Fouriera funkcji}.
 
     Jest rzeczą oczywistą, że ze względu na okresowość funkcji cosinus i sinus założyć należy okresowość funkcji $f$.
-    Założymy ponadto, że funkcja $f$ jest przedziałami monotoniczna (por \S 4.2).
+    Założymy ponadto, że funkcja $f$ jest przedziałami monotoniczna (por. \parsign 4.2).
 
     Udowodnimy mianowicie następujące:
 
     \begin{twierdzenie}
-        Każda funkcja okresowa $f$ o okresie $2\pi$ (tzn. $f(x + 2\pi) = f(x)$), przedziałami ciągła (wraz ze swą pochodną),
-        przedziałami monotoniczna i spełniająca (w punktach nieciągłości) warunek
+        Każda funkcja okresowa $f$ o okresie $2\pi$ \normalsign{(}tzn. $f(x + 2\pi) = f(x)$\normalsign{)}, przedziałami ciągła
+        \normalsign{(}wraz ze swą pochodną\normalsign{)}, przedziałami monotoniczna i spełniająca
+        \normalsign{(}w punktach nieciągłości\normalsign{)} warunek
         \begin{equation}
             \label{eq:statement}
             f(x) = \frac{f(x - 0) + f(x + 0)}{2}
@@ -123,33 +145,33 @@
 
     \begin{equation}
         \label{eq:sum}
-        S_n(x) = \frac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + \ldots + (a_n \cos nx + b_n \sin nx)
+        S_n(x) = \tfrac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + \ldots + (a_n \cos nx + b_n \sin nx)
     \end{equation}
 
     Należy dowieść, że jeśli współczynniki spełniają warunki~\eqref{eq:el0}-\eqref{eq:elb}, to
 
     \begin{equation}
         \label{eq:fS}
-        f(x) = \lim_{n = \infty} S_n(x)
+        f(x) = \lim_{n = \infty} S_n(x) \text{.}
     \end{equation}
 
     Wymienione warunki pozwalają przekształcić wzór~\eqref{eq:sum}, jak następuje
 
     \begin{gather}
         \begin{align}
-            \pi S_n(x) & = \int\limits_{-\pi}^{\pi} \frac{1}{2} f(t) \,dt + \int\limits_{-\pi}^{\pi} f(t)(\cos t \cos x + \sin t \sin x) \,dt +
+            \pi S_n(x) & = \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} f(t) \,dt + \mathsmaller{\int\limits_{-\pi}^{\pi}} f(t)(\cos t \cos x + \sin t \sin x) \,dt +
             \ldots + \\
-            & \kern 6pc + \int\limits_{-\pi}^{\pi} f(t)(\cos nt \cos nx + \sin nt \sin nx) \,dt = \notag\\
-            & = \int\limits_{-\pi}^{\pi} f(t)\left(\frac{1}{2} + \cos (t -x) + \ldots + \cos n(t - x)\right) \,dt = \notag\\
-            & = \int\limits_{-\pi}^{\pi} f(t) \frac{\sin (2n + 1) \frac{1}{2} (t - x)}{2 \sin \frac{1}{2} (t - x)} \,dt \notag
+            & \kern 6pc + \mathsmaller{\int\limits_{-\pi}^{\pi}} f(t)(\cos nt \cos nx + \sin nt \sin nx) \,dt = \notag\\
+            & = \mathsmaller{\int\limits_{-\pi}^{\pi}} f(t)\left(\tfrac{1}{2} + \cos (t -x) + \ldots + \cos n(t - x)\right) \,dt = \notag\\
+            & = \mathsmaller{\int\limits_{-\pi}^{\pi}} f(t) \frac{\sin (2n + 1) \frac{1}{2} (t - x)}{2 \sin \frac{1}{2} (t - x)} \,dt \notag
         \end{align}
         \raisetag{3\baselineskip}
     \end{gather}
 
-    na mocy znanego wzoru (por. (2), \S 1.2):
+    na mocy znanego wzoru (por. (2), \parsign 1.2):
 
     \[
-        \frac{1}{2} + \cos t + \cos 2t + \ldots + \cos nt = \frac{\sin \frac{1}{2} (2n + 1) t}{2 \sin \frac{1}{2} t}
+        \tfrac{1}{2} + \cos t + \cos 2t + \ldots + \cos nt = \frac{\sin \frac{1}{2} (2n + 1) t}{2 \sin \frac{1}{2} t}
     \]
 
 \end{document}

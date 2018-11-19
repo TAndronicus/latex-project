@@ -2,9 +2,11 @@
 \usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\let\lll\relax
 \usepackage{amsthm}
-\usepackage{thmtools}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{thmtools}
 \usepackage{scrlayer-scrpage}
 \usepackage{scrextend}
 \usepackage{titleref}
@@ -55,6 +57,7 @@
 \counterwithout{equation}{section}
 
 \begin{document}
+    \noindent
     Można jednak wówczas stosować mocniejsze kryteria logarytmiczne, do których prowadzą szeregi rozpatrywane w przykładzie 3.
 
     Dodajmy, że istnieją szeregi (o wyrazach dodatnich), które na żadne kryterium logarytmiczne nie reagują.
@@ -67,11 +70,11 @@
     \begin{multline}
         \label{eq:fourier}
         f(x) = \tfrac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + (a_2 \cos 2x + b_2 \sin 2x) + \\
-        \ldots + (a_n \cos nx + b_n \sin nx) + \ldots
+        + \ldots + (a_n \cos nx + b_n \sin nx) + \ldots
     \end{multline}
 
-    Zauważmy, że jeśli szereg rozważany jest jednostajnie zbieżny w przedziale $-\pi \leq x \leq \pi$,
-    to współczynniki $a_n$ i $b_n$ dają się łatwo wyrazić w zależności od sumy szeregu, tj. od funkcji $f$.
+    Zauważmy, że jeśli szereg rozważany jest jednostajnie zbieżny w przedziale $-\pi \leqslant x \leqslant \pi$,
+    to współczynniki $a_n$ i $b_n$ dają się łatwo wyrazić w zależności~od sumy szeregu, tj. od funkcji $f$.
     Mianowicie, ze względu na jednostajną zbieżność mamy (por. tw. 12, \parsign10.2)
 
     \[
@@ -86,6 +89,7 @@
         \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \,dx = \pi a_0 \text{,}
     \]
 
+    \noindent
     więc
 
     \begin{equation}
@@ -93,7 +97,7 @@
         a_0 = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \,dx \text{.}
     \end{equation}
 
-    Aby obliczyć $a_0$, mnożymy obie strony równości~\eqref{eq:fourier} przez $\cos nx$ i podobnie jak poprzednio znajdujemy
+    Aby obliczyć $a_n$, mnożymy obie strony równości~\eqref{eq:fourier} przez $\cos nx$ i podobnie jak poprzednio znajdujemy
 
     \begin{multline*}
         \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \cos nx \,dx = \\ \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \cos nx \,dx +
@@ -107,6 +111,7 @@
         \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos mx \cos nx \,dx = 0 = \mathsmaller{\int\limits_{-\pi}^{\pi}} \sin mx \sin nx \,dx
     \]
 
+    \noindent
     dla $m \neq n$, przeto
 
     \begin{equation}
@@ -123,7 +128,7 @@
 
     Powstaje następujące zagadnienie: jakie funkcje dadzą się przedstawić w postaci~\eqref{eq:fourier}, przy czym współczynniki $a_n$ i $b_n$ mają
     spełniać wzory~\eqref{eq:el0}-\eqref{eq:elb} (tzw. \textit{wzory Eulera-Fouriera}).
-    Jeśli tego rodzaju rowinięcie istnieje, to nazywamy je \textit{szeregiem Fouriera funkcji}.
+    Jeśli tego rodzaju rozwinięcie istnieje, to nazywamy je \textit{szeregiem Fouriera funkcji f}.
 
     Jest rzeczą oczywistą, że ze względu na okresowość funkcji cosinus i sinus założyć należy okresowość funkcji $f$.
     Założymy ponadto, że funkcja $f$ jest przedziałami monotoniczna (por. \parsign 4.2).
@@ -168,6 +173,7 @@
         \raisetag{3\baselineskip}
     \end{gather}
 
+    \noindent
     na mocy znanego wzoru (por. (2), \parsign 1.2):
 
     \[

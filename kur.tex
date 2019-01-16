@@ -1,3 +1,12 @@
+%Jędrzej Biedrzycki 6504
+%
+% Początkowo co prawda groza z rozbijaniem zdania na akapity, ale ze wskazówkami domyslił sie i poprawił.
+% Dla mnie: przeanalizować to miejsce amsmath, które powoduje, że w przeciwieństwie do zwykłego LaTeX-a złe użycie jest widoczne.
+% W CV fonty jak z Auschwitz, ale poprawione.
+% I na celującą zrobił stopniową zmiane koloru.
+%
+% 5,5 celuj
+%
 \documentclass[leqno]{book}
 \usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
@@ -12,11 +21,12 @@
 \usepackage{titleref}
 \usepackage{titlesec}
 \usepackage{nameref}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{relsize}
+\usepackage{rusmath}
 
-\addtolength{\voffset}{-0.75cm}
-\addtolength{\textheight}{1.5cm}
+%\addtolength{\voffset}{-0.75cm}
+%\addtolength{\textheight}{1.5cm}
 
 \pagestyle{scrheadings}
 \addtokomafont{pagehead}{\normalfont}
@@ -25,19 +35,19 @@
 \lohead{}
 \cohead{\thesection.~\nameref{currentSection}}
 
-\expandafter\def\expandafter\normalsize\expandafter{%
-\normalsize
-\setlength\abovedisplayskip{5pt}
-\setlength\belowdisplayskip{5pt}
-\setlength\abovedisplayshortskip{5pt}
-\setlength\belowdisplayshortskip{5pt}
-}
+%\expandafter\def\expandafter\normalsize\expandafter{%
+%\normalsize
+%\setlength\abovedisplayskip{5pt}
+%\setlength\belowdisplayskip{5pt}
+%\setlength\abovedisplayshortskip{5pt}
+%\setlength\belowdisplayshortskip{5pt}
+%}
 
-\declaretheoremstyle[headindent=15pt, headfont=\scshape, bodyfont=\slshape]{theoremstyle}
+\declaretheoremstyle[headindent=15pt, headfont=\scshape, bodyfont=\itshape]{theoremstyle}
 \declaretheorem[name=Twierdzenie, numbered=no, style=theoremstyle]{twierdzenie}
 
 \deffootnotemark{(\textsuperscript{\thefootnotemark})}
-\deffootnote[4em]{0em}{0em}{(\textsuperscript{\thefootnotemark})}
+\deffootnote[4em]{0em}{0em}{(\textsuperscript{\thefootnotemark}) }
 \renewcommand{\footnoterule}{%
 \kern -3pt
 \hrule width 5em height 0.5pt
@@ -45,7 +55,7 @@
 }
 
 \titleformat{\section}[runin]{\normalfont\bfseries}{\kern2em\thesection.}{0.5em}{}[\kern-0.5em]
-\newcommand{\extendedSection}[2]{\section[#1]{#1\normalfont{\protect\footnote{#2}}\textbf{.}}\label{currentSection}}
+\newcommand{\extendedSection}[2]{\section[#1]{#1\normalfont{\protect\footnote{ #2}}\textbf{.}}\label{currentSection}}
 
 \newcommand{\normalsign}[1]{{\normalfont{#1}}}
 \newcommand{\parsign}[0]{\S\,}
@@ -62,11 +72,10 @@
 
     Dodajmy, że istnieją szeregi (o wyrazach dodatnich), które na żadne kryterium logarytmiczne nie reagują.
 
-    \extendedSection{Szeregi Fouriera}{J. Fourier (1768-1830). Rozwinięcia funkcji w szeregi znane pod jego imieniem wprowadził Fourier w związku z
+    \extendedSection{Szeregi Fouriera}{J. Fourier (1768--1830). Rozwinięcia funkcji w szeregi znane pod jego imieniem wprowadził Fourier w związku z
     pracami w teorii ciepła.}
 
     Niech dany będzie szereg trygonometryczny zbieżny następującej postaci:
-
     \begin{multline}
         \label{eq:fourier}
         f(x) = \tfrac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + (a_2 \cos 2x + b_2 \sin 2x) + \\
@@ -76,58 +85,53 @@
     Zauważmy, że jeśli szereg rozważany jest jednostajnie zbieżny w przedziale $-\pi \leqslant x \leqslant \pi$,
     to współczynniki $a_n$ i $b_n$ dają się łatwo wyrazić w zależności~od sumy szeregu, tj. od funkcji $f$.
     Mianowicie, ze względu na jednostajną zbieżność mamy (por. tw. 12, \parsign10.2)
-
     \[
         \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x)\,dx = \\ \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \,dx +
         \sum_{n = 1}^{\infty} \mathsmaller{\int\limits_{-\pi}^{\pi}} (a_n \cos nx + b_n \sin nx) \,dx \text{.}
     \]
 
     Ponieważ zaś
-
     \[
         \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos nx \,dx = 0 = \mathsmaller{\int\limits_{-\pi}^{\pi}} \sin nx \,dx, \qquad
         \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \,dx = \pi a_0 \text{,}
     \]
-
-    \noindent
+%
     więc
-
     \begin{equation}
         \label{eq:el0}
         a_0 = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \,dx \text{.}
     \end{equation}
 
     Aby obliczyć $a_n$, mnożymy obie strony równości~\eqref{eq:fourier} przez $\cos nx$ i podobnie jak poprzednio znajdujemy
-
+%
     \begin{multline*}
         \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \cos nx \,dx = \\ \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} a_0 \cos nx \,dx +
         \sum_{m = 1}^{\infty} \mathsmaller{\int\limits_{-\pi}^{\pi}} (a_m \cos mx \cos nx + b_m \sin mx \cos nx) \,dx \text{.}
     \end{multline*}
 
     Ponieważ zaś (por. przykład 4, \parsign 10.1)
-
+%
     \[
         \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos^2 nx \,dx = \pi, \qquad
         \mathsmaller{\int\limits_{-\pi}^{\pi}} \cos mx \cos nx \,dx = 0 = \mathsmaller{\int\limits_{-\pi}^{\pi}} \sin mx \sin nx \,dx
     \]
-
-    \noindent
+%
     dla $m \neq n$, przeto
-
+%
     \begin{equation}
         \label{eq:ela}
         a_n = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \cos nx \,dx \text{.}
     \end{equation}
 
     Podobnie znajdujemy
-
+%
     \begin{equation}
         \label{eq:elb}
         b_n = \frac{1}{\pi} \mathsmaller{\int\limits_{-\pi}^{\pi}} f(x) \sin nx \,dx \text{.}
     \end{equation}
 
     Powstaje następujące zagadnienie: jakie funkcje dadzą się przedstawić w postaci~\eqref{eq:fourier}, przy czym współczynniki $a_n$ i $b_n$ mają
-    spełniać wzory~\eqref{eq:el0}-\eqref{eq:elb} (tzw. \textit{wzory Eulera-Fouriera}).
+    spełniać wzory~\eqref{eq:el0}--\eqref{eq:elb} (tzw. \textit{wzory Eulera--Fouriera}).
     Jeśli tego rodzaju rozwinięcie istnieje, to nazywamy je \textit{szeregiem Fouriera funkcji f}.
 
     Jest rzeczą oczywistą, że ze względu na okresowość funkcji cosinus i sinus założyć należy okresowość funkcji $f$.
@@ -136,9 +140,10 @@
     Udowodnimy mianowicie następujące:
 
     \begin{twierdzenie}
-        Każda funkcja okresowa $f$ o okresie $2\pi$ \normalsign{(}tzn. $f(x + 2\pi) = f(x)$\normalsign{)}, przedziałami ciągła
+        Każda funkcja okresowa $f$ o okresie $2\pi$ \normalsign{(}tzn. $f(x + 2\pi) \bequals f(x)$\normalsign{)}, przedziałami ciągła
         \normalsign{(}wraz ze swą pochodną\normalsign{)}, przedziałami monotoniczna i spełniająca
         \normalsign{(}w punktach nieciągłości\normalsign{)} warunek
+        %
         \begin{equation}
             \label{eq:statement}
             f(x) = \frac{f(x - 0) + f(x + 0)}{2}
@@ -147,21 +152,21 @@
     \end{twierdzenie}
 
     Oznaczmy przez $S_n (x)$ $n$-tą sumę częściową szeregu~\eqref{eq:fourier}, tj.
-
+%
     \begin{equation}
         \label{eq:sum}
         S_n(x) = \tfrac{1}{2} a_{0} + (a_1 \cos x + b_1 \sin x) + \ldots + (a_n \cos nx + b_n \sin nx)
     \end{equation}
 
-    Należy dowieść, że jeśli współczynniki spełniają warunki~\eqref{eq:el0}-\eqref{eq:elb}, to
-
+    Należy dowieść, że jeśli współczynniki spełniają warunki~\eqref{eq:el0}--\eqref{eq:elb}, to
+%
     \begin{equation}
         \label{eq:fS}
         f(x) = \lim_{n = \infty} S_n(x) \text{.}
     \end{equation}
 
     Wymienione warunki pozwalają przekształcić wzór~\eqref{eq:sum}, jak następuje
-
+%
     \begin{gather}
         \begin{align}
             \pi S_n(x) & = \mathsmaller{\int\limits_{-\pi}^{\pi}} \tfrac{1}{2} f(t) \,dt + \mathsmaller{\int\limits_{-\pi}^{\pi}} f(t)(\cos t \cos x + \sin t \sin x) \,dt +
@@ -172,10 +177,9 @@
         \end{align}
         \raisetag{3\baselineskip}
     \end{gather}
-
-    \noindent
+%
     na mocy znanego wzoru (por. (2), \parsign 1.2):
-
+%
     \[
         \tfrac{1}{2} + \cos t + \cos 2t + \ldots + \cos nt = \frac{\sin \frac{1}{2} (2n + 1) t}{2 \sin \frac{1}{2} t}
     \]
